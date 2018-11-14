@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script>
+			function createA() {
+				x = document.createElement("a");
+				y = document.createTextNode("这是一个新增加的a元素");
+				x.appendChild(y);
+				box.appendChild(x);
+				x.setAttribute("href", "#");
+				x.style.color = "yellow";
+				x.style.textDecoration = "none";
+				x.style.backgroundColor = "red";
+				x.style.display = "block";
+				x.style.fontSize = "30px";
+				x.style.width = "300px";
+				x.style.margin = "0 auto"
+			}
+
+			function removeP() {
+				var div = document.getElementById("box");
+				var y = div.childNodes;
+				for(i = 0; i < y.length; i++) {
+					if(y[i].tagName == "P") div.removeChild(y[i]);
+				}
+			}
+
+			function removeA() {
+				var div = document.getElementById("box");
+				var y = div.childNodes;
+				var loop = y.length;
+				for(i = loop - 1; i >= 0; i--) {
+					if(y[i].tagName == "A") div.removeChild(y[i]);
+				}
+			}
+
+			function changeColor() {
+				var div = document.getElementById("box");
+				var y = div.childNodes;
+				for(i = 0; i < y.length; i++) {
+					if(y[i].tagName == "P" || y[i].tagName == "A")
+						y[i].style.backgroundColor = "red";
+				}
+			}
+		</script>
+		<style>
+			.class2 {
+				display: block;
+				text-decoration: none;
+				color: orchid;
+				font-size: 30px;
+			}
+			
+			a:hover {
+				color: chartreuse;
+			}
+			
+			button {
+				font-size: 30px;
+			}
+			
+			#box {
+				margin: 0 auto;
+				width: 90%;
+				height: 600px;
+				background-color: royalblue;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			<br id="p3" class="class1">
+			<marquee behavior="alternate">
+				<font size="7" color="darkred">李熠老师好帅但得低调</font>
+			</marquee>
+			</br>
+			<a id="a1" class="class2" href="#">这是一个A元素</a>
+			<a id="a2" class="class2" href="#">这是一个A元素</a>
+			<p id="p2" class="class1"><i><font size="6" color="cyan">这是一个P元素</font></i></p>
+			<p id="p1" class="class1">
+				<font size="4" color="magenta">这是一个P元素</font>
+			</p>
+			<button onclick="createA()">增加一个A元素</button>
+			<button onclick="removeP()">删除所有的P元素</button>
+			<button onclick="removeA()">删除所有的A元素</button>
+			<button onclick="changeColor()">改变背景色</button>
+		</div>
+	</body>
+
+</html>
