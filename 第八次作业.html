@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			table {
+				width: 1200px;
+			}
+			
+			tr {
+				text-align: center;
+			}
+			
+			u {
+				text-decoration: none;
+			}
+			
+			.even {
+				background-color:antiquewhite;
+			}
+			
+			.odd {
+				background-color:gainsboro;
+			}
+			
+			#tr1 {
+				background-color: blue;
+				color: white;
+				width: 1200px;
+				height: 20px;
+				margin-bottom: 5px;
+			}
+			
+			#tr2 {
+				background-color: gainsboro;
+				width: 1200px;
+				height: 20px;
+			}
+			
+			#tr3 {
+				background-color: antiquewhite;
+				width: 1200px;
+				height: 20px;
+			}
+			
+			#tr4 {
+				background-color: gainsboro;
+				width: 1200px;
+				height: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			window.onload = function() {
+				var tab = document.getElementById("tab1");
+				var body = document.getElementsByTagName("body");
+				var trs = document.getElementsByTagName("tr");
+				for(var i = 0; i < trs.length; i++) {
+					trs[i].className = (i % 2 == 0) ? "even" : "odd";
+				}
+			}
+
+			function bnt1() {
+				var tab = document.getElementById('tab');
+				var rowIndex = tab.rows.length + 1; //添加一行; 				
+				var tr = tab.insertRow();
+				var name1 = document.getElementById("name1").value;
+				var sex = document.getElementById("sex").value;
+				tr.onmouseover = tr.className = "displayStyle";
+				tr.onmouseout = tr.className = "hideStyle";
+				tr.onclick = function() {
+					this.className = "onClickChangeStyle(this)";
+				}
+				var th1 = tr.insertCell();
+				var th2 = tr.insertCell();
+				var th3 = tr.insertCell();
+				var th4 = tr.insertCell();
+				th1.innerHTML = "" + rowIndex - 1;
+				th2.innerHTML = name1;
+				th3.innerHTML = sex;
+				th4.innerHTML = "<a href='#' onclick='deleterow(this)'>删除</a>";
+				initRows(tab);
+			}
+
+			function deleterow(obj) {
+				var tab = document.getElementById('tab'); //获取tr对象;
+				var tr = obj.parentNode.parentNode;
+				if(tab.rows.length) { //tr.parentNode，指的是，table对象;移除子节点;
+					tr.parentNode.removeChild(tr);
+				}
+				//重新生成行号; 				
+				initRows(document.getElementById('tab'));
+			}
+		</script>
+
+		<b>姓名</b>
+		<b><input type="text" id="name1"></b>
+		<b>性别</b>
+		<b> 		 
+	<select type="radio" id="sex"style="width: 50px;"> 		 
+		<option style="font-weight: bold;">女</option> 		 
+		<option style="font-weight: bold;">男</option> 		 		
+	</select> 		
+        </b>
+		<button onclick="bnt1()">增加按钮</button>
+
+		<table id="tab">
+			<tr id="tr1" onmouseout="this.style.color='white'" onmouseover="this.style.color='black'">
+				<th>编号</th>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>操作</th>
+			</tr>
+			<tbody>
+				<tr id="tr2">
+					<th width="250px" height="30px">1</th>
+					<th width="250px" height="30px">张三</th>
+					<th width="250px" height="30px">女</th>
+					<th id="tr1-3" width="250px" height="30px">
+						<a href="#" onclick="deleterow(this)">删除</a>
+					</th>
+				</tr>
+				<tr id="tr3">
+					<th width="250px" height="30px">2</th>
+					<th width="250px" height="30px">李四</th>
+					<th height="30px">女</th>
+					<th id="tr1-3" width="250px" height="30px">
+						<a href="#" onclick="deleterow(this)">删除</a>
+					</th>
+				</tr>
+				<tr id="tr4">
+					<th width="250px" height="30px">3</th>
+					<th width="250px" height="30px">王五</th>
+					<th width="250px" height="30px">男</th>
+					<th id="tr1-3" width="250px" height="30px">
+						<a href="#" onclick="deleterow(this)">删除</a>
+					</th>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+
+</html>
