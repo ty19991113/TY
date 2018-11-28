@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html style="overflow-x:hidden">
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>销售收入和利润预测</title>
+		<style>
+			table {
+				width: 1000px;
+			}
+			
+			tr {
+				text-align: center;
+			}
+			
+			tr:nth-child(2n) {
+				background-color: antiquewhite;
+			}
+			
+			tr:nth-child(2n+1) {
+				background-color: gainsboro;
+			}
+		</style>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="css/animate.min.css">
+
+		<script>
+			const NUMBER_OF_LEAVES = 15;
+			const width = window.screen.width;
+
+			function init() {
+				var container = document.getElementById('leafContainer');
+				for(var i = 0; i < NUMBER_OF_LEAVES; i++) {
+					container.appendChild(createALeaf());
+				}
+
+			}
+
+			function randomInteger(low, high) {
+				return low + Math.floor(Math.random() * (high - low));
+			}
+
+			function randomFloat(low, high) {
+				return low + Math.random() * (high - low);
+			}
+
+			function pixelValue(value) {
+				return value + 'px';
+			}
+
+			function durationValue(value) {
+				return value + 's';
+			}
+
+			function createALeaf() {
+				var leafDiv = document.createElement('div');
+				var image = document.createElement('img');
+				image.src = 'images/cash' + randomInteger(3, 7) + '.png';
+				leafDiv.style.top = "-100px";
+				leafDiv.style.left = pixelValue(randomInteger(0, width));
+				var spinAnimationName = (Math.random() < 0.5) ? 'clockwiseSpin' : 'counterclockwiseSpinAndFlip';
+				leafDiv.style.webkitAnimationName = 'fade, drop';
+				image.style.webkitAnimationName = spinAnimationName;
+				var fadeAndDropDuration = durationValue(randomFloat(3, 9));
+				var spinDuration = durationValue(randomFloat(3, 7));
+				leafDiv.style.webkitAnimationDuration = fadeAndDropDuration + ', ' + fadeAndDropDuration;
+				var leafDelay = durationValue(randomFloat(0, 0));
+				leafDiv.style.webkitAnimationDelay = leafDelay + ', ' + leafDelay;
+				image.style.webkitAnimationDuration = spinDuration;
+				leafDiv.appendChild(image);
+				return leafDiv;
+			}
+			window.addEventListener('load', init, false);
+		</script>
+
+	</head>
+
+	<body>
+
+		<div class="moneybox" id="leafContainer"></div>
+		<table style="text-align: center;margin:0 auto;">
+			<tr height="40px">
+				<th style="width: 200px;">几年内</th>
+				<th style="width: 600px;">预计达到的盈利额</th>
+			</tr>
+			<tr height="40px">
+				<th>一年内</th>
+				<th>500万</th>
+			</tr>
+			<tr height="40px">
+				<th>三年内</th>
+				<th>5000万</th>
+			</tr>
+			<tr height="40px">
+				<th>五年内</th>
+				<th>1亿</th>
+			</tr>
+		</table>
+
+	</body>
+
+</html>
